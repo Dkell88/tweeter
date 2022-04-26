@@ -15,6 +15,7 @@ nav {
   font-family: 'Bungee', cursive;
   font-size: 3.5vmax;
 }
+
 .new-tweet-nav {
   display: flex;
   flex-direction: column;
