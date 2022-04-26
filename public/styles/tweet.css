@@ -1,0 +1,17 @@
+.tweets-container {
+  background-color: blueviolet;
+  border: 5px;
+  border-style: double;
+  border-radius: 15px;
+  border-color: black;
+  height: 200px;
+  margin: 30px;
+}
+
+
+.tweet-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px 15px;
+}
