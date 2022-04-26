@@ -1,0 +1,33 @@
+#tweet-text {
+
+  outline: none;
+  border-bottom-width: thick;
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  background-color: transparent;
+  overflow: auto;
+  
+  width: 100%;
+  height: 32px;
+  font-size: 16px;
+  resize: none;
+  border-color: black;
+}
+
+.outputDiv {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Bungee', cursive;
+}
+
+.new-tweet {
+  padding-top: 2em;
+  font-family: 'Source Sans Pro', sans-serif;
+  color:#696969;
+}
+
+.tweetButton {
+  color: white;
+  background-color: #4056a1;
+}

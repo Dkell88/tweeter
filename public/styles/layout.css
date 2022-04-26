@@ -15,16 +15,16 @@ html {
  */
  
 body {
-  color: #545149;
-  background-color: #18ff93;
+  
+  background-color: white;
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif;
+  
 }
 
 main {
   width: 90%;
   margin-left: 5%;
-  background-color: rgb(114, 208, 225);
 }
 
 /*

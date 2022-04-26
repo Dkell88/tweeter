@@ -38,19 +38,18 @@
     <header> 
           <div><img src="/images/profile-hex.png"> </div>
           <br>
-          <div><h2>Elon Musk</h2></div>
+          <span><b>Darren </b>Kelly</span>
         </div>
     </header>
    
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
-        <h2>Compose Tweet</h2>
         <form method="POST" action="tweets/" >
           <label for="tweet-text">What are you humming about?</label>
-          <textarea name="text" id="tweet-text"></textarea>
-          <div>
-            <button type="submit">Tweet</button>
+          <textarea name="text" id="tweet-text" maxlength="140"></textarea>
+          <div class = "outputDiv">
+            <button class="tweetButton" type="submit">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
