@@ -47,24 +47,45 @@ $(() => {
     return $tweet;
   };
 
-  $('#new-tweet-form').submit((event) =>{
-    event.preventDefault();
-    console.log(event);
-    const tweetData = {
-      "user": {
-        "name": "Darren",
-        "avatars": "https://i.imgur.com/73hZDYK.png",
-        "handle": "@DKelly"
-      },
-      "content": {
-        "text": $('tweet-text').val(),
-      },
-      "created_at": Date.now()
-    };
-    const $tweet = createTweetElement(tweetData);
-    console.log($tweet);
-    $('#tweets-container').append($tweet);
-
+  $.ajax({
+    url: 'tweets/',
+    method: 'GET',
+    success:(tweets) => {
+      for (const tweet in tweets) {
+        console.log(tweets[tweet]);
+        console.log(tweets[tweet].user.avatars);
+        const $postTweet = createTweetElement(tweets[tweet]);
+        $('#tweets-container').append($postTweet);
+      }
+    }
   });
 
+  // $('form').submit(function(event) {
+  $('#new-tweet-form').submit(function(event) {
+    event.preventDefault();
+    console.log($('#tweet-text'));
+    console.log(event);
+    console.log(this['text']);
+
+    $.ajax({
+      url: 'tweets/',
+      method: 'POST',
+      data: this
+    });
+  });
+
+  const tweetData = {
+    "user": {
+      "name": "Darren",
+      "avatars": "https://i.imgur.com/73hZDYK.png",
+      "handle": "@DKelly"
+    },
+    "content": {
+      "text": $('#tweet-text').val(),
+    },
+    "created_at": Date.now()
+  };
+  const $tweet = createTweetElement(tweetData);
+  //console.log($tweet);
+  $('#tweets-container').append($tweet);
 });
