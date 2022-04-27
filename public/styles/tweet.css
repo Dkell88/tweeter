@@ -1,10 +1,12 @@
 .tweet {
+  display: flex;
+  flex-direction: column;
   background-color: whitesmoke;
   border: 4px;
   border-style: solid;
   border-radius: 0px;
   border-color:rgb(41, 47, 47);
-  height: 10em;
+  height:fit-content; 
   margin: 1em 0;
 }
 .tweet:hover{
