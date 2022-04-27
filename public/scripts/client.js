@@ -18,85 +18,70 @@
  }
  */
 //const { nextISSTimesForMyLocation  } = require('./iss_promised');
-
-$(() => {
-  console.log("DOM ready");
-  const createTweetElement = function(tweetData) {
+const renderTweets = function(tweetData) {
     
-    let $tweet = $(`
-      <section class="tweet" >
-        <header class="tweet-header">
-          <div class="profile">
-            <img src="${tweetData.user.avatars}">
-            <span>${tweetData.user.name}</span>
-          </div>
-          <span class="user-url" >${tweetData.user.handle}</span>
-        </header>
-        <div class="tweet-content">${tweetData.content.text}</div>
-        <footer class="tweet-footer">
-          <span class="created">${timeDifference(tweetData.created_at)}</span>
-          <div class="footer-icons">
-            <i class="fa-solid fa-share"></i>
-            <i class="fa-solid fa-flag"></i>
-            <i class="fa-solid fa-heart"></i>
-          </div>
-        </footer>
-      </section>
-    `);
-    return $tweet;
-  };
+  let $tweet = $(`
+    <section class="tweet" >
+      <header class="tweet-header">
+        <div class="profile">
+          <img src="${tweetData.user.avatars}">
+          <span>${tweetData.user.name}</span>
+        </div>
+        <span class="user-url" >${tweetData.user.handle}</span>
+      </header>
+      <div class="tweet-content">${tweetData.content.text}</div>
+      <footer class="tweet-footer">
+        <span class="created">${timeago.format(tweetData.created_at)}</span>
+        <div class="footer-icons">
+          <i class="fa-solid fa-share"></i>
+          <i class="fa-solid fa-flag"></i>
+          <i class="fa-solid fa-heart"></i>
+        </div>
+      </footer>
+    </section>
+  `);
+  return $tweet;
+};
 
+const loadTweets = function() {
+  console.log("FETCHING TWEETS (FUNCTION)");
+  $('#tweets-container').empty();
   $.ajax({
     url: 'tweets/',
     method: 'GET',
   }).then((tweets) => {
     for (const tweet in tweets) {
       console.log(tweets[tweet]);
-      console.log(tweets[tweet].user.avatars);
-      const $postTweet = createTweetElement(tweets[tweet]);
+      const $postTweet = renderTweets(tweets[tweet]);
       $('#tweets-container').append($postTweet);
     }
   });
+};
 
-  // $('form').submit(function(event) {
+
+
+$(() => {
+  console.log("DOM ready");
+
+  loadTweets();
+
   $('#new-tweet-form').submit(function(event) {
     event.preventDefault();
-    console.log($('#tweet-text'));
-    console.log(event);
-    console.log(this['text']);
 
-    $.ajax({
-      url: 'tweets/',
-      method: 'POST',
-      data: $(this).serialize()
-    }).then($.ajax({
-      url: 'tweets/',
-      method: 'GET',
-    }).then((tweets) => {
-      for (const tweet in tweets) {
-        console.log(tweets[tweet]);
-        console.log(tweets[tweet].user.avatars);
-        const $postTweet = createTweetElement(tweets[tweet]);
-        $('#tweets-container').append($postTweet);
-      }
-    }));
-
-    // $.post('tweets/', $("tweet-text", this).serialize())
-
-    // const tweetData = {
-    //   "user": {
-    //     "name": "Darren",
-    //     "avatars": "https://i.imgur.com/73hZDYK.png",
-    //     "handle": "@DKelly"
-    //   },
-    //   "content": {
-    //     "text": $('#tweet-text').val(),
-    //   },
-    //   "created_at": Date.now()
-    // };
-    // const $tweet = createTweetElement(tweetData);
-    // //console.log($tweet);
-    // $('#tweets-container').append($tweet);
-
+    $.post('tweets/', $(this).serialize()
+    ).then($.get('tweets/').then(loadTweets()));
+    
   });
 });
+
+
+
+
+
+//This works
+// $.ajax({url: 'tweets/',method: 'POST', data: $(this).serialize()
+// }).then($.ajax({url: 'tweets/',method: 'GET',}).then(fetchTweets()));
+
+//This works
+// $.post('tweets/', $(this).serialize()
+// ).then($.ajax({url: 'tweets/',method: 'GET',}).then(fetchTweets()));
