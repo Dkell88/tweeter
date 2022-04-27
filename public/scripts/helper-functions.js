@@ -1,17 +1,38 @@
-const timeDifference = function(previous) {
-
-  const msPerMinute = 60 * 1000;
-  const msPerHour = msPerMinute * 60;
-  const msPerDay = msPerHour * 24;
-  const msPerMonth = msPerDay * 30;
-  const msPerYear = msPerDay * 365;
-  const elapsed = Date.now() - previous;
-
-  if (elapsed < msPerMinute) return Math.round(elapsed / 1000) + ' seconds ago';
-  else if (elapsed < msPerHour) return Math.round(elapsed / msPerMinute) + ' minutes ago';
-  else if (elapsed < msPerDay) return Math.round(elapsed / msPerHour) + ' hours ago';
-  else if (elapsed < msPerMonth) return 'approximately ' + Math.round(elapsed / msPerDay) + ' days ago';
-  else if (elapsed < msPerYear) return 'approximately ' + Math.round(elapsed / msPerMonth) + ' months ago';
-  else return 'approximately ' + Math.round(elapsed / msPerYear) + ' years ago';
+const renderTweets = function(tweetData) {
+    
+  let $tweet = $(`
+    <section class="tweet" >
+      <header class="tweet-header">
+        <div class="profile">
+          <img src="${tweetData.user.avatars}">
+          <span>${tweetData.user.name}</span>
+        </div>
+        <span class="user-url" >${tweetData.user.handle}</span>
+      </header>
+      <div class="tweet-content">${tweetData.content.text}</div>
+      <footer class="tweet-footer">
+        <span class="created">${timeago.format(tweetData.created_at)}</span>
+        <div class="footer-icons">
+          <i class="fa-solid fa-share"></i>
+          <i class="fa-solid fa-flag"></i>
+          <i class="fa-solid fa-heart"></i>
+        </div>
+      </footer>
+    </section>
+  `);
+  return $tweet;
 };
-//module.exports = { timeDifference };
+
+const loadTweets = function() {
+  console.log("FETCHING TWEETS (FUNCTION)");
+  $('#tweets-container').empty();
+  $.ajax({
+    url: 'tweets/',
+    method: 'GET',
+  }).then((tweets) => {
+    for (const tweet in tweets) {
+      const $postTweet = renderTweets(tweets[tweet]);
+      $('#tweets-container').append($postTweet);
+    }
+  });
+};
