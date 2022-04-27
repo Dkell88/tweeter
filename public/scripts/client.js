@@ -40,7 +40,6 @@ $(() => {
             <i class="fa-solid fa-flag"></i>
             <i class="fa-solid fa-heart"></i>
           </div>
-
         </footer>
       </section>
     `);
@@ -50,13 +49,12 @@ $(() => {
   $.ajax({
     url: 'tweets/',
     method: 'GET',
-    success:(tweets) => {
-      for (const tweet in tweets) {
-        console.log(tweets[tweet]);
-        console.log(tweets[tweet].user.avatars);
-        const $postTweet = createTweetElement(tweets[tweet]);
-        $('#tweets-container').append($postTweet);
-      }
+  }).then((tweets) => {
+    for (const tweet in tweets) {
+      console.log(tweets[tweet]);
+      console.log(tweets[tweet].user.avatars);
+      const $postTweet = createTweetElement(tweets[tweet]);
+      $('#tweets-container').append($postTweet);
     }
   });
 
@@ -70,22 +68,35 @@ $(() => {
     $.ajax({
       url: 'tweets/',
       method: 'POST',
-      data: this
-    });
-  });
+      data: $(this).serialize()
+    }).then($.ajax({
+      url: 'tweets/',
+      method: 'GET',
+    }).then((tweets) => {
+      for (const tweet in tweets) {
+        console.log(tweets[tweet]);
+        console.log(tweets[tweet].user.avatars);
+        const $postTweet = createTweetElement(tweets[tweet]);
+        $('#tweets-container').append($postTweet);
+      }
+    }));
 
-  const tweetData = {
-    "user": {
-      "name": "Darren",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
-      "handle": "@DKelly"
-    },
-    "content": {
-      "text": $('#tweet-text').val(),
-    },
-    "created_at": Date.now()
-  };
-  const $tweet = createTweetElement(tweetData);
-  //console.log($tweet);
-  $('#tweets-container').append($tweet);
+    // $.post('tweets/', $("tweet-text", this).serialize())
+
+    // const tweetData = {
+    //   "user": {
+    //     "name": "Darren",
+    //     "avatars": "https://i.imgur.com/73hZDYK.png",
+    //     "handle": "@DKelly"
+    //   },
+    //   "content": {
+    //     "text": $('#tweet-text').val(),
+    //   },
+    //   "created_at": Date.now()
+    // };
+    // const $tweet = createTweetElement(tweetData);
+    // //console.log($tweet);
+    // $('#tweets-container').append($tweet);
+
+  });
 });
