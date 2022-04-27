@@ -1,4 +1,4 @@
-.tweets-container {
+.tweet {
   background-color: whitesmoke;
   border: 4px;
   border-style: solid;
@@ -7,7 +7,7 @@
   height: 10em;
   margin: 1em 0;
 }
-.tweets-container:hover{
+.tweet:hover{
   box-shadow:
   10px 5px 5px rgba(0, 0, 0, 0.47);
 }
@@ -23,9 +23,8 @@ div {
   justify-content: space-between;
   padding: .5em .5em;
 }
-
-.tweets-container header img {
-  width: 20%;
+.tweet header img {
+  padding: 0 1em 0 0;
 }
 
 .tweet-content {
@@ -53,10 +52,10 @@ div {
 .fa-solid fa-share {
   padding: 0 .5em;
 }
-.tweets-container footer i[class*="fa"] {
+.tweet footer i[class*="fa"] {
   padding: 0 0.25em;
   color: rgb(0, 149, 255);
 }
-.tweets-container footer i[class*="fa"]:hover {
+.tweet footer i[class*="fa"]:hover {
   color: rgb(208, 255, 0);
 }
