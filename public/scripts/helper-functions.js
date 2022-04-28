@@ -31,14 +31,16 @@ const renderTweets = function(tweetData) {
 
 const loadTweets = function() {
   console.log("FETCHING TWEETS (FUNCTION)");
-  $('#tweets-container').empty();
-  $.ajax({
-    url: 'tweets/',
-    method: 'GET',
-  }).then((tweets) => {
+  $.get('tweets/'
+  ).then((tweets) => {
+    $('#tweets-container').empty();
+    const newTweet = Object.fromEntries(
+      Object.entries(tweets).slice(0,1)
+  )
+    console.log(newTweet);
     for (const tweet in tweets) {
       const $postTweet = renderTweets(tweets[tweet]);
-      $('#tweets-container').append($postTweet);
+      $('#tweets-container').prepend($postTweet);
     }
   });
 };

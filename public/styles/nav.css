@@ -22,4 +22,20 @@ nav {
   justify-content: center;
   align-items: center;
 }
+.fa-angles-down {
+  animation: updown 1.5s ease infinite;
+}
 
+@keyframes updown {
+  0% {
+    transform: translateY(-5%);
+  }
+
+  50% {
+    transform: translateY(50%);
+  }
+
+  100% {
+    transform: translateY(-5%);
+  }
+}
