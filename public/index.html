@@ -3,7 +3,7 @@
   <head>
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
-
+    
     <!-- External CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
     <script src="https://kit.fontawesome.com/38c94cacdb.js" crossorigin="anonymous"></script>
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/tweet.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/media.css" type="text/css" />
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -45,11 +46,13 @@
     </header>
    
     <main class="container">
+
       <div id="error-box">
         <i class="fa-solid fa-dumpster-fire"></i>
         <p id="error-message">Error</p>
         <i class="fa-solid fa-dumpster-fire"></i>
       </div>
+
       <section class="new-tweet">
         <form id='new-tweet-form'>
           <label for="tweet-text">What are you humming about?</label>

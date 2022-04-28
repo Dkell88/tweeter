@@ -15,6 +15,9 @@ html {
  */
  
 body {
+  display: flex;
+  flex-direction: column;
+  max-width: 2400px;
   background-color: rgb(255, 255, 255);
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif; 
@@ -22,11 +25,8 @@ body {
 
 main {
   width: 90%;
-  margin-left: 5%;
+  margin: 0% 5%;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
 
  
