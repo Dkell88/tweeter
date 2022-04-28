@@ -1,3 +1,9 @@
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 const renderTweets = function(tweetData) {
     
   let $tweet = $(`
@@ -9,7 +15,7 @@ const renderTweets = function(tweetData) {
         </div>
         <span class="user-url" >${tweetData.user.handle}</span>
       </header>
-      <div class="tweet-content">${tweetData.content.text}</div>
+      <div class="tweet-content">${escape(tweetData.content.text)}</div>
       <footer class="tweet-footer">
         <span class="created">${timeago.format(tweetData.created_at)}</span>
         <div class="footer-icons">
