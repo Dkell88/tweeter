@@ -4,10 +4,10 @@
   align-items: center;
   height: 400px;
   width: 100%;
-  background: rgb(96, 195, 251);
+  background: #A9FBC3;
   background-image: url(/images/asfalt-light.png);
   margin-top:120px;
-  z-index: 5;
-  color: white;
+  z-index: -5;
+  color:#9381FF;
   font-size: 36px;
 } 

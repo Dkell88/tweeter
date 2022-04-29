@@ -8,10 +8,11 @@
   border-color:rgb(41, 47, 47);
   height:fit-content; 
   margin: 1em 0;
+  max-width: 100%;
 }
 .tweet:hover{
   box-shadow:
-  10px 5px 5px rgba(0, 0, 0, 0.47);
+  10px 5px 5px rgba(255, 188, 66, 0.47);
 }
 div {
   display: flex;
@@ -29,11 +30,11 @@ div {
 }
 .tweet-content {
   padding: 1em;
-  width: 100%;
-  overflow-wrap: break-word;
+  word-wrap:break-word;
+  display:inline-block;
 }
 .user-url {
-  color: grey;
+  color: rgb(148, 148, 148);
 }
 .tweet-footer {
   display: flex;
@@ -56,8 +57,8 @@ div {
 }
 .tweet footer i[class*="fa"] {
   padding: 0 0.25em;
-  color: rgb(0, 149, 255);
+  color: #B8B8FF;
 }
 .tweet footer i[class*="fa"]:hover {
-  color: rgb(208, 255, 0);
+  color: #FFBC42;
 }

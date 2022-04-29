@@ -30,14 +30,10 @@ const renderTweets = function(tweetData) {
 };
 
 const loadTweets = function() {
-  console.log("FETCHING TWEETS (FUNCTION)");
   $.get('tweets/'
   ).then((tweets) => {
     $('#tweets-container').empty();
-    const newTweet = Object.fromEntries(
-      Object.entries(tweets).slice(0,1)
-  )
-    console.log(newTweet);
+    const newTweet = Object.fromEntries(Object.entries(tweets).slice(0,1));
     for (const tweet in tweets) {
       const $postTweet = renderTweets(tweets[tweet]);
       $('#tweets-container').prepend($postTweet);
