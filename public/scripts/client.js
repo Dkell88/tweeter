@@ -5,15 +5,16 @@ $(() => { //Wait for Dom to load
   //Listen for butotn click "Tweet" button
   $('#new-tweet-form').submit(function(event) {
     event.preventDefault();
-    
+    const $tweetText = $(this).children('textarea');
+    console.log($($tweetText).val());
     //Ensure the user entered text to the characters
-    if ($('#tweet-text').val() === "") {
+    if ($($tweetText).val() === "") {
       $("#error-message").text("Please enter a tweet");
       $("#error-box").slideDown(500);
       return;
     }
     //Ensure the user is under 140 chars
-    if ($('#tweet-text').val().length > 140) {
+    if ($($tweetText).val().length > 140) {
       $("#error-message").text("Too many character entered");
       $("#error-box").slideDown(500);
       return;
