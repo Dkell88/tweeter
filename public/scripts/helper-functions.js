@@ -1,6 +1,8 @@
 const escape = function (str) {
   let div = document.createElement("div");
+
   div.appendChild(document.createTextNode(str));
+
   return div.innerHTML;
 };
 
@@ -30,13 +32,16 @@ const renderTweets = function(tweetData) {
 };
 
 const loadTweets = function() {
+
   $.get('tweets/'
   ).then((tweets) => {
+
     $('#tweets-container').empty();
-    const newTweet = Object.fromEntries(Object.entries(tweets).slice(0,1));
     for (const tweet in tweets) {
       const $postTweet = renderTweets(tweets[tweet]);
       $('#tweets-container').prepend($postTweet);
     }
   });
 };
+
+// const newTweet = Object.fromEntries(Object.entries(tweets).slice(0,1)); //used for fute feature within .then()
